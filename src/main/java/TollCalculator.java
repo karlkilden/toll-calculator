@@ -15,8 +15,8 @@ public class TollCalculator {
     Date intervalStart = dates[0];
     int totalFee = 0;
     for (Date date : dates) {
-      int nextFee = getTollFee(date, vehicle);
-      int tempFee = getTollFee(intervalStart, vehicle);
+      int nextFee = 0;//getTollFee(date, vehicle);
+      int tempFee = 0;//getTollFee(intervalStart, vehicle);
 
       TimeUnit timeUnit = TimeUnit.MINUTES;
       long diffInMillies = date.getTime() - intervalStart.getTime();
@@ -34,19 +34,18 @@ public class TollCalculator {
     return totalFee;
   }
 
-  private boolean isTollFreeVehicle(Vehicle vehicle) {
-    if(vehicle == null) return false;
-    String vehicleType = vehicle.getType();
-    return vehicleType.equals(TollFreeVehicles.MOTORBIKE.getType()) ||
-           vehicleType.equals(TollFreeVehicles.TRACTOR.getType()) ||
-           vehicleType.equals(TollFreeVehicles.EMERGENCY.getType()) ||
-           vehicleType.equals(TollFreeVehicles.DIPLOMAT.getType()) ||
-           vehicleType.equals(TollFreeVehicles.FOREIGN.getType()) ||
-           vehicleType.equals(TollFreeVehicles.MILITARY.getType());
+  public int getTollFee(final Date date, VehicleType vehicle) {
+    if (vehicle == VehicleType.CAR && isTollDay(date)) {
+      return calculateCharge(date);
+    }
+    return 0;
   }
 
-  public int getTollFee(final Date date, Vehicle vehicle) {
-    if(isTollFreeDate(date) || isTollFreeVehicle(vehicle)) return 0;
+  private boolean isTollDay(Date date) {
+    return false;
+  }
+
+  private int calculateCharge(Date date) {
     Calendar calendar = GregorianCalendar.getInstance();
     calendar.setTime(date);
     int hour = calendar.get(Calendar.HOUR_OF_DAY);
