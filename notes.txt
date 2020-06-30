@@ -1,0 +1,5 @@
+
+** Vehicle Type **
+Vehicle Type did not add anything, we will ask the other system to filter out cars before implementing.
+As the calling system needed to use objects in this system before, and this system was incomplete, this should be a considerable improvement for all parties.
+If the calling system is unable to filter out cars, then Vehicle Type can be passed as a String for ease of integration.
