@@ -2,6 +2,7 @@ package com.kildeen.workdaycheck.swe;
 
 import com.aldaviva.easter4j.Easter4J;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -186,6 +187,7 @@ class HolidayOrWeekendCheckerTest {
      * (70% more computing time on my machine if months with no holidays are not skipped.)
      */
     @Test
+    @Disabled
     void perf() {
         //CachingHolidayOrWeekendChecker chc = new CachingHolidayOrWeekendChecker(hc);
         long start = System.currentTimeMillis();
